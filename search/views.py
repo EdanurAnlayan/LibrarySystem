@@ -1,11 +1,11 @@
 from django.shortcuts import render
 from sources.models import Sources
-from LoanService import forms
+from request import forms
 from django.contrib import messages
 from django.http import HttpResponseRedirect
 
 def home(request):
-    sources = ''
+    sources = None
     if request.method == 'POST':
         text = request.POST['arama']
         if len(text)<3:
@@ -23,7 +23,7 @@ def home(request):
         
     context ={
         'sources' : sources,
-        'form' : forms.TakeDeliveryForm()
+        'form' : forms.TakeRequestForm()
 
     }
     return render(request,'search.html',context)

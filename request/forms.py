@@ -14,7 +14,5 @@ class TakeRequestForm(forms.ModelForm):
         super(TakeRequestForm,self).__init__(*args,**kwargs)
         for field in self.fields:
             self.fields[field].required = True
-        self.fields["source_name"].widget.attrs["placeholder"] = "______________"
-        self.fields["author"].widget.attrs["placeholder"] = "______________"
         self.fields["author"].widget.attrs["class"] = "form-control"
         self.fields["source_name"].widget.attrs["class"] = "form-control"

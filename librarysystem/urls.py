@@ -24,4 +24,5 @@ urlpatterns = [
     path('loan/',include('LoanService.urls')),
     path('report/',include('report.urls')),
     path('',include('search.urls')),
+    path('request/',include('request.urls')),
 ]
