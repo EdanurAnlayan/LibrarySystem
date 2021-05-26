@@ -1,12 +1,16 @@
 from django.shortcuts import render
 from sources.models import Sources
 from LoanService import forms
+from django.contrib import messages
+from django.http import HttpResponseRedirect
 
 def home(request):
     sources = ''
     if request.method == 'POST':
-        print(request.POST)
         text = request.POST['arama']
+        if len(text)<3:
+            messages.success(request,"En az 3 karakter girmeniz gerekmektedir!",extra_tags="danger")
+            return HttpResponseRedirect("/")
         search_words = request.POST['search']
         if search_words == 'Kaynak':
             sources = Sources.objects.filter(source_name__icontains = text)
@@ -22,6 +26,5 @@ def home(request):
         'form' : forms.TakeDeliveryForm()
 
     }
-    print(sources)
     return render(request,'search.html',context)
 
