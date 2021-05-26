@@ -1,0 +1,28 @@
+.dot {
+    height: 15px;
+    width: 15px;
+    background-color: red;
+    border-radius: 50%;
+    display: inline-block;
+  }
+
+.sec{
+    position: relative;
+    right: -3px;
+    top:-1em;
+}
+
+.counter.counter-lg {
+    top: -24px !important;
+}
+a {
+    font-size: 22px !important;
+}
+
+sup {
+    top: -.5em;
+    position: relative;
+    font-size: 75%;
+    line-height: 0;
+    vertical-align: baseline;
+}

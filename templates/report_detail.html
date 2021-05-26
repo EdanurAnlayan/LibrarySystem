@@ -1,0 +1,27 @@
+{% load static %}
+
+  <table class="table table-hover">
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Library Name</th>
+      <th scope="col">Bu Ay Ödünç Alınan</th>
+      <th scope="col">Toplam Mevcut</th>
+         <th scope="col">En Çok Kullanılan Kategori</th>
+        <th scope="col">Ücret</th>
+    </tr>
+  </thead>
+  <tbody>
+  {% for row in kutups  %}
+    <tr>
+      <th scope="row">{{ forloop.counter }}</th>
+      <td>{{ row.kutuphane.library_name }}</td>
+      <td>{{ row.tum_kitaplar }}</td>
+      <td>{{ row.emanetler }}</td>
+      <td>{{ row.max_category.types }}</td>
+    <td>{{ row.price }}</td>
+    </tr>
+{% endfor %}
+
+  </tbody>
+</table>

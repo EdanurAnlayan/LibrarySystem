@@ -1,0 +1,60 @@
+
+<div class="modal fade" id="userDetailModal">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+          <div class="modal-header">
+          <h5 class="modal-title text-center">User Info</h5>
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+        </div>
+
+
+        <div class="modal-body">
+
+            <div class="col-md-12">
+              <div class="card mb-3">
+                <div class="card-body">
+                  <div class="row">
+                    <div class="col-sm-3">
+                      <h6 class="mb-0">Full Name</h6>
+                    </div>
+                    <div class="col-sm-9 text-secondary">
+                      {{ emanet.given_user.name|lower|capfirst }} {{ emanet.given_user.surname|upper }}
+                    </div>
+                  </div>
+                  <hr>
+                  <div class="row">
+                    <div class="col-sm-3">
+                      <h6 class="mb-0">Apellation</h6>
+                    </div>
+                    <div class="col-sm-9 text-secondary">
+                      {{ emanet.given_user.appellation }}
+                    </div>
+                  </div>
+                  <hr>
+                  <div class="row">
+                    <div class="col-sm-3">
+                      <h6 class="mb-0">Status</h6>
+                    </div>
+                    <div class="col-sm-9 text-secondary">
+                      {{ emanet.given_user.get_record_status_display }}
+                    </div>
+                  </div>
+                  <hr>
+                  <div class="row">
+                    <div class="col-sm-3">
+                      <h6 class="mb-0">CardNo</h6>
+                    </div>
+                    <div class="col-sm-9 text-secondary">
+                      {{ emanet.given_user.uniqe_number }}
+                    </div>
+                  </div>
+
+                </div>
+              </div>
+</div>
+        </div>
+
+        </div>
+
+      </div>
+    </div>

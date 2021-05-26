@@ -1,0 +1,77 @@
+{% load static %}
+
+<!-- Navbar -->
+ {% include 'talep_modal.html' %}
+
+<nav class="navbar navbar-expand-sm navbar-light bg-light ">
+  <!-- Container wrapper -->
+  <div class="container-fluid">
+    <!-- Toggle button -->
+    <button
+      class="navbar-toggler"
+      type="button"
+      data-mdb-toggle="collapse"
+      data-mdb-target="#navbarSupportedContent"
+      aria-controls="navbarSupportedContent"
+      aria-expanded="false"
+      aria-label="Toggle navigation"
+    >
+      <i class="fas fa-bars"></i>
+    </button>
+
+    <!-- Collapsible wrapper -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <!-- Navbar brand -->
+
+          <div class="navbar-header">
+              <a class="navbar-brand mt-2 mt-lg-0" href="#">
+        <img
+          src="{% static 'books.png' %}"
+          height="50"
+          alt=""
+          loading="lazy"
+        />
+                  L I B R A
+                  </a>
+
+          </div>
+
+
+      <!-- Left links -->
+        {% if request.user.is_authenticated %}
+      <ul class="navbar-nav ms-auto mb-2 mb-lg-0 ">
+        <li class="nav-item">
+          <a class="nav-link"  style="cursor: pointer">Talepler</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">Raporlar</a>
+        </li>
+
+          <li class="nav-item">
+          <a class="nav-link"  data-toggle="modal" data-target="#myModal" style="cursor: pointer">Teslim Al</a>
+        </li>
+
+      </ul>
+        {% endif %}
+      <!-- Left links -->
+    </div>
+    <!-- Collapsible wrapper -->
+
+    <!-- Right elements -->
+    <div class="d-flex align-items-center">
+      <!-- Icon -->
+        {% if request.user.is_authenticated %}
+            <img src="{% static 'notification.png' %}"   height="30"
+          alt=""
+          loading="lazy"
+        /><span class="badge sec badge-danger">9</span>&nbsp;&nbsp;
+
+        {% else %}
+            <a href="{% url 'admin:index' %}" class="btn btn-primary">Log In</a>
+        {% endif %}
+
+    <!-- Right elements -->
+  </div>
+  <!-- Container wrapper -->
+</nav>
+<!-- Navbar -->
