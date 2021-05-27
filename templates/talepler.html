@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block body %}
+<div class="container">
+    <table class="table table-hover">
+        <thead>
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">Kaynak Adı</th>
+            <th scope="col">Yazar</th>
+            <th scope="col">Talep Tarihi</th>
+            <th scope="col">Talep Et</th>
+          </tr>
+        </thead>
+        <tbody>
+        
+        {% for request in requested %}
+          <tr>
+            <th scope="source">{{ forloop.counter }}</th>
+            <td>{{ request.source_name }}</td>
+            <td>{{ request.author }}</td>
+            <td>{{ request.request_date }}</td>
+            <td><button class="btn btn-primary"><a href="{% url 'TalepEt' request.id %}">Talep Et</a></button></td>
+          </tr>
+      {% endfor %}
+        </tbody>
+      </table>
+</div>
+
+
+{% endblock %}

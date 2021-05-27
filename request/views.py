@@ -1,7 +1,7 @@
 from django.contrib import messages
 from django.http.response import HttpResponseRedirect
-from django.shortcuts import render
-from .models import Request
+from django.shortcuts import redirect, render
+from .models import Request,Requestedd
 
 def RequestView(request):
     if request.method=='POST':
@@ -10,3 +10,15 @@ def RequestView(request):
         return HttpResponseRedirect("/")
 
     return HttpResponseRedirect("/")
+
+def Requested(request):
+    requested = Request.objects.all()
+    context ={
+        'requested':requested
+    }
+    return render(request,'talepler.html',context)
+
+def TalepEt(request,id):
+    source = Request.objects.get(id=id)
+    Requestedd.objects.create(source=source,user=request.user)
+    return redirect('talepler')

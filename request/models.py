@@ -1,3 +1,4 @@
+from users.models import Employee
 from django.db import models
 
 class Request(models.Model):
@@ -7,3 +8,10 @@ class Request(models.Model):
 
     def __str__(self) :
         return self.source_name
+
+class Requestedd(models.Model):
+    source = models.ForeignKey(Request,null=True,on_delete=models.SET_NULL)
+    user = models.ForeignKey(Employee,null=True,on_delete=models.SET_NULL)
+
+    def __str__(self):
+        return self.source.source_name
