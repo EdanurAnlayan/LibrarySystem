@@ -5,7 +5,7 @@ from . import models
 class TakeRequestForm(forms.ModelForm):
     class Meta:
         model = models.Request
-        fields = '__all__'
+        exclude = ['talep_drumu']
         labels = {
             "source_name":"Kaynak Adı",
             "author":"Yazar",

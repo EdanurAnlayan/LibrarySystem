@@ -1,3 +1,4 @@
+from users.models import Employee
 from django.contrib import messages
 from django.http.response import HttpResponseRedirect
 from django.shortcuts import redirect, render
@@ -12,7 +13,7 @@ def RequestView(request):
     return HttpResponseRedirect("/")
 
 def Requested(request):
-    requested = Request.objects.all()
+    requested = Request.objects.filter(talep_drumu=False)
     context ={
         'requested':requested
     }
@@ -20,5 +21,15 @@ def Requested(request):
 
 def TalepEt(request,id):
     source = Request.objects.get(id=id)
-    Requestedd.objects.create(source=source,user=request.user)
-    return redirect('talepler')
+
+    try:
+        user=Employee.objects.get(user=request.user)
+    except:
+        messages.success(request,'Böyle bir kullanıcı bulunamadı.')
+    
+    Requestedd.objects.create(source=source,user=user)
+    source.talep_drumu=True
+    source.save()
+    messages.success(request,'Talep işlemi başarılı.')
+
+    return redirect('/yonetici/sources/sources/add')

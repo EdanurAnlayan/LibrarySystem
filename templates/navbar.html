@@ -61,10 +61,6 @@
     <div class="d-flex align-items-center">
       <!-- Icon -->
         {% if request.user.is_authenticated %}
-            <img src="{% static 'notification.png' %}"   height="30"
-          alt=""
-          loading="lazy"
-        /><span class="badge sec badge-danger">9</span>&nbsp;&nbsp;
 
         {% else %}
             <a href="{% url 'admin:index' %}" class="btn btn-primary">Log In</a>
