@@ -24,7 +24,7 @@
       <!-- Navbar brand -->
 
           <div class="navbar-header">
-              <a class="navbar-brand mt-2 mt-lg-0" href="#">
+              <a class="navbar-brand mt-2 mt-lg-0" href="{% url 'home' %}">
         <img
           src="{% static 'books.png' %}"
           height="50"
@@ -44,7 +44,7 @@
           <a class="nav-link" href="{% url 'talepler' %}"  style="cursor: pointer">Talepler</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#">Raporlar</a>
+          <a class="nav-link" href="{% url 'report' %}">Raporlar</a>
         </li>
 
           <li class="nav-item">

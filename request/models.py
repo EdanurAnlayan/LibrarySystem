@@ -13,6 +13,7 @@ class Request(models.Model):
 class Requestedd(models.Model):
     source = models.ForeignKey(Request,null=True,on_delete=models.SET_NULL)
     user = models.ForeignKey(Employee,null=True,on_delete=models.SET_NULL)
+    request_date = models.DateField(auto_now_add=True)
 
     def __str__(self):
         return self.source.source_name

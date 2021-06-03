@@ -20,7 +20,11 @@
             <td>{{ request.source_name }}</td>
             <td>{{ request.author }}</td>
             <td>{{ request.request_date }}</td>
+            {% if is_available %}
             <td><button class="btn btn-primary"><a href="{% url 'TalepEt' request.id %}">Talep Et</a></button></td>
+            {% else %}
+            <td>Talep sınırı aşıldı</td>
+            {% endif %}
           </tr>
       {% endfor %}
         </tbody>

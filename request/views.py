@@ -3,6 +3,7 @@ from django.contrib import messages
 from django.http.response import HttpResponseRedirect
 from django.shortcuts import redirect, render
 from .models import Request,Requestedd
+from django.utils import timezone
 
 def RequestView(request):
     if request.method=='POST':
@@ -12,9 +13,18 @@ def RequestView(request):
 
     return HttpResponseRedirect("/")
 
+
+
 def Requested(request):
+    last_week = timezone.now().date() - timezone.timedelta(days=7)
+    is_available = True
+    requested_count = Requestedd.objects.filter(request_date__gte=last_week).count()
+    if requested_count>2:
+        is_available = False
+    print(requested_count)
     requested = Request.objects.filter(talep_drumu=False)
     context ={
+        'is_available':is_available,
         'requested':requested
     }
     return render(request,'talepler.html',context)

@@ -1,5 +1,7 @@
 from django.db import models
 from django.db.models.base import Model
+from django.db.models.signals import post_save
+import random
 
 #Kütüphane modeli
 class Library(models.Model):
@@ -35,9 +37,19 @@ class Sources(models.Model):
     content = models.TextField()
     source_type = models.ForeignKey(Types,on_delete=models.CASCADE)
     library = models.ForeignKey(Library,on_delete=models.CASCADE)
-    barcode = models.CharField(max_length=11,unique=True)
+    barcode = models.CharField(max_length=11,unique=True,editable=False)
     lend = models.BooleanField(default =False)
 
     def __str__(self) :
         return self.source_name
+    
+    
+def create_barcode(sender,instance,created,**kwargs):
+    if created:
+        barcode = instance.source_type.main_source.source_type[0]+"_"+instance.source_type.types[0]+"_"+str(random.randint(10000,99999))
+        source = Sources.objects.get(id = instance.id)
+        source.barcode=barcode
+        source.save()
+
+post_save.connect(create_barcode,sender=Sources)
 
