@@ -9,7 +9,6 @@ class Library(models.Model):
     phone = models.CharField(max_length=15,null=True)
     adress = models.TextField()
 
-
     def __str__(self):
         return self.library_name
 
@@ -43,10 +42,9 @@ class Sources(models.Model):
     def __str__(self) :
         return self.source_name
     
-    
 def create_barcode(sender,instance,created,**kwargs):
     if created:
-        barcode = instance.source_type.main_source.source_type[0]+"_"+instance.source_type.types[0]+"_"+str(random.randint(10000,99999))
+        barcode = instance.source_type.main_source.source_type[0].lower()+instance.source_type.types[0].lower()+str(random.randint(1000000,9999999))
         source = Sources.objects.get(id = instance.id)
         source.barcode=barcode
         source.save()

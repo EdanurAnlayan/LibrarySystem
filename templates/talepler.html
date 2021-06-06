@@ -1,35 +1,35 @@
 {% extends 'base.html' %}
-{% load static %}
-{% block body %}
-<div class="container">
-    <table class="table table-hover">
-        <thead>
-          <tr>
-            <th scope="col">#</th>
-            <th scope="col">Kaynak Adı</th>
-            <th scope="col">Yazar</th>
-            <th scope="col">Talep Tarihi</th>
-            <th scope="col">Talep Et</th>
-          </tr>
-        </thead>
-        <tbody>
-        
-        {% for request in requested %}
-          <tr>
-            <th scope="source">{{ forloop.counter }}</th>
-            <td>{{ request.source_name }}</td>
-            <td>{{ request.author }}</td>
-            <td>{{ request.request_date }}</td>
-            {% if is_available %}
-            <td><button class="btn btn-primary"><a href="{% url 'TalepEt' request.id %}">Talep Et</a></button></td>
-            {% else %}
-            <td>Talep sınırı aşıldı</td>
-            {% endif %}
-          </tr>
-      {% endfor %}
-        </tbody>
-      </table>
-</div>
 
+{% load static %}
+{% block css %}
+<link rel="stylesheet" href="{% static 'receipt.css' %}">
+{% endblock %}
+{% block body %}
+      <section id="tabs" class="project-tab">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <nav>
+                        <div class="nav nav-tabs nav-fill" id="nav-tab" role="tablist">
+                            <a class="nav-item nav-link active" id="nav-home-tab" data-toggle="tab" href="#haftalik" role="tab" aria-controls="haftalik" aria-selected="true">Haftalık</a>
+                            <a class="nav-item nav-link" id="nav-profile-tab" data-toggle="tab" href="#nav-ay" role="tab" aria-controls="nav-ay" aria-selected="false">Aylık</a>
+                            <a class="nav-item nav-link" id="nav-profile-tab" data-toggle="tab" href="#nav-yil" role="tab" aria-controls="nav-yil" aria-selected="false">Yıllık</a>
+                        </div>
+                    </nav>
+                    <div class="tab-content" id="nav-tabContent">
+                        <div class="tab-pane fade show active" id="haftalik" role="tabpanel" aria-labelledby="nav-home-tab">
+                            {% include 'talep_hafta.html' %}
+                        </div>
+                        <div class="tab-pane fade" id="nav-ay" role="tabpanel" aria-labelledby="nav-profile-tab">
+                          {% include 'talep_ay.html' %}
+                        </div>
+                        <div class="tab-pane fade" id="nav-yil" role="tabpanel" aria-labelledby="nav-profile-tab">
+                          {% include 'talep_yil.html' %}
+                    </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
 
 {% endblock %}

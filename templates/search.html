@@ -11,7 +11,6 @@
         <span class="input-group-btn ">
             <input type="submit" value="Arama" class="btn btn-primary">
         </span>
-
     </div>
     <div class="row">
         <div class="col-md-2"></div>
@@ -27,42 +26,53 @@
     <div class="col-md-2"></div>
 </form>
 
+{% if sources|length > 0 and sources != "-" %}
 
-  {% if sources.count == 0 %}
-  <button class="btn btn-primary" data-toggle="modal" data-target="#talepetmodal">Talep Et</button>
+<table class="table table-hover">
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Kaynak Adı</th>
+      <th scope="col">Yazar</th>
+      <th scope="col">Tür</th>
+      <th scope="col">Barkod No</th>
+      <th scope="col">Mevcut</th>
+    </tr>
+  </thead>
+  <tbody>
 
-  {% else %}
-  <table class="table table-hover">
-    <thead>
-      <tr>
-        <th scope="col">#</th>
-        <th scope="col">Kaynak Adı</th>
-        <th scope="col">Yazar</th>
-        <th scope="col">Tür</th>
-        <th scope="col">Barkod No</th>
-        <th scope="col">Mevcut</th>
-      </tr>
-    </thead>
-    <tbody>
-    {% for source in sources  %}
-      <tr>
-        <th scope="source">{{ forloop.counter }}</th>
-        <td>{{ source.source_name }}</td>
-        <td>{{ source.author }}</td>
-        <td>{{ source.source_type }}</td>
-        <td>{{ source.barcode }}</td>
-        {% if source.lend == 'True' %}
-          <td>{{ 'Hayır' }}</td>
-        {% else %}
-          <td>{{ 'Evet' }}</td>
-        {% endif %}
-      </tr>
-  {% endfor %}
-    </tbody>
-  </table>
- {% endif %}
+  {% for source in sources  %}
+    <tr>
+      <th scope="source">{{ forloop.counter }}</th>
+      <td>{{ source.source_name }}</td>
+      <td>{{ source.author }}</td>
+      <td>{{ source.source_type }}</td>
+      <td>{{ source.barcode }}</td>
+
+      {% if source.lend == 'True' %}
+
+        <td>{{ 'Hayır' }}</td>
+
+      {% else %}
+
+        <td>{{ 'Evet' }}</td>
+
+      {% endif %}
+    </tr>
+{% endfor %}
+
+  </tbody>
+</table>
 </div>
 
+{% else %}
 
+{% if sources|length < 1 %}
+
+<button class="btn btn-primary" data-toggle="modal" data-target="#talepetmodal">Talep Et</button>
+
+{% endif %}
+
+{% endif %}
 
 {% endblock %}

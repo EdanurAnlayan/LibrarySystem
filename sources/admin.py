@@ -3,6 +3,7 @@ from django.contrib import admin
 
 class SourcesAdmin(admin.ModelAdmin):
     readonly_fields = ('barcode',)
+    list_filter = ('lend',)
 
 admin.site.register(Library)
 admin.site.register(SourceType)

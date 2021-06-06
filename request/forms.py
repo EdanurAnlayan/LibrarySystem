@@ -1,5 +1,4 @@
 from django import forms
-from django.forms import ValidationError
 from . import models
 
 class TakeRequestForm(forms.ModelForm):
@@ -10,6 +9,7 @@ class TakeRequestForm(forms.ModelForm):
             "source_name":"Kaynak Adı",
             "author":"Yazar",
         }
+
     def __init__(self,*args,**kwargs):
         super(TakeRequestForm,self).__init__(*args,**kwargs)
         for field in self.fields:

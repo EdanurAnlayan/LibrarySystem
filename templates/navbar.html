@@ -36,7 +36,6 @@
 
           </div>
 
-
       <!-- Left links -->
         {% if request.user.is_authenticated %}
       <ul class="navbar-nav ms-auto mb-2 mb-lg-0 ">
@@ -46,17 +45,13 @@
         <li class="nav-item">
           <a class="nav-link" href="{% url 'report' %}">Raporlar</a>
         </li>
-
           <li class="nav-item">
           <a class="nav-link"  data-toggle="modal" data-target="#myModal" style="cursor: pointer">Teslim Al</a>
         </li>
-
       </ul>
         {% endif %}
       <!-- Left links -->
     </div>
-    <!-- Collapsible wrapper -->
-
     <!-- Right elements -->
     <div class="d-flex align-items-center">
       <!-- Icon -->
@@ -65,9 +60,5 @@
         {% else %}
             <a href="{% url 'admin:index' %}" class="btn btn-primary">Log In</a>
         {% endif %}
-
-    <!-- Right elements -->
   </div>
-  <!-- Container wrapper -->
 </nav>
-<!-- Navbar -->
